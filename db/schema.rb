@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_150518) do
+ActiveRecord::Schema.define(version: 2021_06_09_140901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +18,13 @@ ActiveRecord::Schema.define(version: 2021_05_21_150518) do
   create_table "bosses", force: :cascade do |t|
     t.string "name"
     t.string "location"
+    t.integer "first_encounter"
+    t.integer "second_encounter"
+    t.integer "third_encounter"
+    t.bigint "loop_pattern_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["loop_pattern_id"], name: "index_bosses_on_loop_pattern_id"
   end
 
   create_table "level_ranges", force: :cascade do |t|
@@ -29,15 +34,13 @@ ActiveRecord::Schema.define(version: 2021_05_21_150518) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "loops", force: :cascade do |t|
-    t.bigint "bosses_id", null: false
-    t.bigint "level_ranges_id", null: false
+  create_table "loop_patterns", force: :cascade do |t|
+    t.bigint "level_range_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["bosses_id"], name: "index_loops_on_bosses_id"
-    t.index ["level_ranges_id"], name: "index_loops_on_level_ranges_id"
+    t.index ["level_range_id"], name: "index_loop_patterns_on_level_range_id"
   end
 
-  add_foreign_key "loops", "bosses", column: "bosses_id"
-  add_foreign_key "loops", "level_ranges", column: "level_ranges_id"
+  add_foreign_key "bosses", "loop_patterns"
+  add_foreign_key "loop_patterns", "level_ranges"
 end
