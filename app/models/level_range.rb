@@ -1,2 +1,0 @@
-class LevelRange < ApplicationRecord
-end
