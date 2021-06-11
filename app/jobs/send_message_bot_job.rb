@@ -21,12 +21,8 @@ class SendMessageBotJob < ApplicationJob
     request["Content-Type"] = "application/json"
 
     request.body = {
-      content: "Ici Wak'Boss qui parle !",
-      tts: false,
-      embed: {
-        title: "Boss du #{Time.now.strftime("%d/%m/%y")}",
-        description: message_content
-      }
+      content: "Ici Wak'Boss qui parle ! \n#{message_content}",
+      tts: false
     }.to_json
     # request.body = message_content
 
