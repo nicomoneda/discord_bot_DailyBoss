@@ -17,7 +17,7 @@ class SendMessageBotJob < ApplicationJob
     # content = "hello" #gets.chomp
     request = Net::HTTP::Post.new(url_message)
 
-    request["Authorization"] = "Bot ODM0Nzk5NDE0MTQ0NjYzNjMz.YIGJig.WNQ4CurbOu1XxWjq1pa2L1x57Rg"
+    request["Authorization"] = BOT_TOKEN
     request["Content-Type"] = "application/json"
 
     request.body = {
