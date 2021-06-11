@@ -29,19 +29,22 @@ class SendMessageBotJob < ApplicationJob
       }
     }.to_json
     # request.body = message_content
+
     response = https.request(request)
 
-    # puts response.read_body
+    ap response.message
 
-    message_id = JSON.parse(response.read_body)["id"]
-    # ap message_id
-    url_crosspost = URI("https://discord.com/api/channels/835425992097005589/messages/#{message_id}/crosspost")
-    https = Net::HTTP.new(url_crosspost.host, url_crosspost.port)
-    https.use_ssl = true
-    request = Net::HTTP::Post.new(url_crosspost)
-    request["Authorization"] = ENV['BOT_TOKEN']
-    request["Content-Type"] = "application/json"
-    response = https.request(request)
-    # puts response.read_body
+    unless response.message == "Unauthorized"
+      message_id = JSON.parse(response.read_body)["id"]
+      # ap message_id
+      url_crosspost = URI("https://discord.com/api/channels/835425992097005589/messages/#{message_id}/crosspost")
+      https = Net::HTTP.new(url_crosspost.host, url_crosspost.port)
+      https.use_ssl = true
+      request = Net::HTTP::Post.new(url_crosspost)
+      request["Authorization"] = ENV['BOT_TOKEN']
+      request["Content-Type"] = "application/json"
+      response = https.request(request)
+      puts response.read_body
+    end
   end
 end
