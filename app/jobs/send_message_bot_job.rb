@@ -17,7 +17,7 @@ class SendMessageBotJob < ApplicationJob
     # content = "hello" #gets.chomp
     request = Net::HTTP::Post.new(url_message)
 
-    request["Authorization"] = BOT_TOKEN
+    request["Authorization"] = ENV['BOT_TOKEN']
     request["Content-Type"] = "application/json"
 
     request.body = {
@@ -39,7 +39,7 @@ class SendMessageBotJob < ApplicationJob
     https = Net::HTTP.new(url_crosspost.host, url_crosspost.port)
     https.use_ssl = true
     request = Net::HTTP::Post.new(url_crosspost)
-    request["Authorization"] = "Bot ODM0Nzk5NDE0MTQ0NjYzNjMz.YIGJig.WNQ4CurbOu1XxWjq1pa2L1x57Rg"
+    request["Authorization"] = ENV['BOT_TOKEN']
     request["Content-Type"] = "application/json"
     response = https.request(request)
     # puts response.read_body
