@@ -7,7 +7,7 @@ class SendMessageBotJob < ApplicationJob
   queue_as :default
 
   def perform(message_content)
-    url_message = URI("https://discord.com/api/channels/852908605195288617/messages")
+    url_message = URI("https://discord.com/api/channels/830072034633449512/messages")
 
     https = Net::HTTP.new(url_message.host, url_message.port)
     https.use_ssl = true
@@ -37,7 +37,7 @@ class SendMessageBotJob < ApplicationJob
     unless response.message == "Unauthorized"
       message_id = JSON.parse(response.read_body)["id"]
       # ap message_id
-      url_crosspost = URI("https://discord.com/api/channels/852908605195288617/messages/#{message_id}/crosspost")
+      url_crosspost = URI("https://discord.com/api/channels/830072034633449512/messages/#{message_id}/crosspost")
       https = Net::HTTP.new(url_crosspost.host, url_crosspost.port)
       https.use_ssl = true
       request = Net::HTTP::Post.new(url_crosspost)
