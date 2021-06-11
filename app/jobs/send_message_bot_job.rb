@@ -24,7 +24,7 @@ class SendMessageBotJob < ApplicationJob
       content: "Ici Wak'Boss qui parle !",
       tts: false,
       embed: {
-        title: "Boss du #{Time.now.strftime("%m/%d/%y")}",
+        title: "Boss du #{Time.now.strftime("%d/%m/%y")}",
         description: message_content
       }
     }.to_json
