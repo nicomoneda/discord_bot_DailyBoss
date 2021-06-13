@@ -24,7 +24,7 @@ class SendDailyBoss < ApplicationService
 
   def daily_bosses
     LevelRange.all.each do |level_range|
-    modulo = (@day_interval % (level_range.number_of_bosses * 3) + 1 )
+    modulo = (@day_interval % (level_range.number_of_bosses * 3))
       level_range.loop_pattern.bosses.all.each do |boss|
         if  boss.first_encounter == modulo || 
             boss.second_encounter == modulo || 
