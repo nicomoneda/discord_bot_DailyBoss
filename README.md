@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Discord bot is developped in Ruby.
 
-Things you may want to cover:
+It's used to know which boss quest is available daily in the video game Wakfu MMO (developed by Ankama).
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Currently, it's not possible to use this bot on whatever Discord server.
