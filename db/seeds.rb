@@ -66,7 +66,7 @@ Boss.create(loop_pattern: loop_51to65, name: "Throll",                          
 Boss.create(loop_pattern: loop_51to65, name: "Royal Skouale",                   location: "Skouale Sèche",    first_encounter: 4, second_encounter: 11, third_encounter: 19)
 Boss.create(loop_pattern: loop_51to65, name: "Kralaboss",                       location: "Donjon Mollusky",  first_encounter: 2, second_encounter: 13, third_encounter: 17)
 Boss.create(loop_pattern: loop_51to65, name: "Grokokolantha",                   location: "Kokokolantha",     first_encounter: 10, second_encounter: 14, third_encounter: 21)
-Boss.create(loop_pattern: loop_51to65, name: "Cwabe Royal",                     location: "Château de Cwabe", first_encounter: 5, second_encounter: 7, third_encounter: 21)
+Boss.create(loop_pattern: loop_51to65, name: "Cwabe Royal",                     location: "Château de Cwabe", first_encounter: 5, second_encounter: 7, third_encounter: 20)
 puts "Boss from 66 to 80..."
 Boss.create(loop_pattern: loop_66to80, name: "Ratachouille",          location: "Ratacombes",             first_encounter: 4, second_encounter: 18, third_encounter: 23)
 Boss.create(loop_pattern: loop_66to80, name: "Grand Orrok",           location: "Temple du Grand Orrok",  first_encounter: 2, second_encounter: 14, third_encounter: 15)
