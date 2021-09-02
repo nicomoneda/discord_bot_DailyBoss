@@ -12,13 +12,13 @@ class SendDailyBoss < ApplicationService
     ap @bosses
     build_message
     ap @message_content
-    # SendMessageBotJob.perform_now(@message_content)
+    SendMessageBotJob.perform_now(@message_content)
   end
 
   private
 
   def get_day_interval
-    end_date =  Time.new(Time.now.year, Time.now.month, Time.now.day)
+    end_date =  Time.new(Time.now.year, Time.now.month, Time.now.day, 0, 0, 0, "+02:00")
     ap end_date
     @day_interval = end_date.tv_sec/60/60/24 - ENV['ORIGIN_DATE'].to_i
   end
