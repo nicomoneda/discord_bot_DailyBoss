@@ -26,6 +26,7 @@ range_156to170  = LevelRange.create(number_of_bosses: 7, range:"156 à 170")
 range_171to185  = LevelRange.create(number_of_bosses: 6, range:"171 à 185")
 range_186to200  = LevelRange.create(number_of_bosses: 8, range:"186 à 200")
 range_201to215  = LevelRange.create(number_of_bosses: 7, range:"201 à 215")
+range_216to230  = LevelRange.create(number_of_bosses: 5, range:"216 à 230")
 
 puts "Creating Loop patterns..."
 
@@ -43,6 +44,7 @@ loop_156to170  = LoopPattern.create(level_range: range_156to170)
 loop_171to185  = LoopPattern.create(level_range: range_171to185)
 loop_186to200  = LoopPattern.create(level_range: range_186to200)
 loop_201to215  = LoopPattern.create(level_range: range_201to215)
+loop_216to230  = LoopPattern.create(level_range: range_216to230)
 
 puts "Creating all Bosses !!!"
 puts "Boss from 6 to 20..."
@@ -150,5 +152,11 @@ Boss.create(loop_pattern: loop_201to215, name: "Phacochemar",   location: "Donjo
 Boss.create(loop_pattern: loop_201to215, name: "Casse-Cours",   location: "Donjon Plantigarde",   first_encounter: 2, second_encounter: 13, third_encounter: 18)
 Boss.create(loop_pattern: loop_201to215, name: "Sumorse",       location: "Donjon Mansot",        first_encounter: 5, second_encounter: 14, third_encounter: 19)
 Boss.create(loop_pattern: loop_201to215, name: "Tortumulte",    location: "Donjon Carapatte",     first_encounter: 4, second_encounter: 10, third_encounter: 21)
+puts "Boss from 216 to 230"
+Boss.create(loop_pattern: loop_216to230, name: "Vaal’Enthia, Reine-démone",                 location: "Donjon Phytomorphe", first_encounter: 1, second_encounter: 5, third_encounter: 13)
+Boss.create(loop_pattern: loop_216to230, name: "Ar’Nan, Augure du néant",                   location: "Donjon Vidéant",     first_encounter: 4, second_encounter: 6, third_encounter: 11)
+Boss.create(loop_pattern: loop_216to230, name: "Cratéros, Bourreau de la fin",              location: "Donjon Démhorrible", first_encounter: 7, second_encounter: 10, third_encounter: 12)
+Boss.create(loop_pattern: loop_216to230, name: "!@#dh`~",                                   location: "Donjon Égaré ?",     first_encounter: 3, second_encounter: 8, third_encounter: 14)
+Boss.create(loop_pattern: loop_216to230, name: "K’abah’al, Gardien de la route des morts",  location: "Donjon Ravageur",    first_encounter: 2, second_encounter: 9, third_encounter: 15)
 
 puts "Seed generated"
