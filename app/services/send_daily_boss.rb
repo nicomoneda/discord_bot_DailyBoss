@@ -7,11 +7,11 @@ class SendDailyBoss < ApplicationService
 
   def call
     get_day_interval
-    ap @day_interval
+    puts @day_interval
     daily_bosses
-    ap @bosses
+    puts @bosses
     build_message
-    ap @message_content
+    puts @message_content
     SendMessageBotJob.perform_now(@message_content)
   end
 
@@ -19,14 +19,14 @@ class SendDailyBoss < ApplicationService
 
   def get_day_interval
     end_date =  Time.new(Time.now.year, Time.now.month, Time.now.day, 0, 0, 0, "+02:00")
-    ap end_date
+    puts end_date
     @day_interval = end_date.tv_sec/60/60/24 - ENV['ORIGIN_DATE'].to_i
   end
 
   def daily_bosses
     LevelRange.all.each do |level_range|
     modulo = (@day_interval % (level_range.number_of_bosses * 3)) + 1
-    ap "modulo = #{modulo}"
+    puts "modulo = #{modulo}"
       level_range.loop_pattern.bosses.all.each do |boss|
         if  boss.first_encounter == modulo || 
             boss.second_encounter == modulo || 

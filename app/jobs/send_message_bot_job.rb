@@ -29,7 +29,7 @@ class SendMessageBotJob < ApplicationJob
 
     response = https.request(request)
 
-    ap response.message
+    # ap response.message
 
     unless response.message == "Unauthorized"
       message_id = JSON.parse(response.read_body)["id"]
