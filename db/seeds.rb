@@ -1,9 +1,9 @@
 
 puts "Destroy Bosses, Level Ranges and Loop Patterns"
 
+LevelRange.destroy_all
 LoopPattern.destroy_all
 Boss.destroy_all
-LevelRange.destroy_all
 Message.destroy_all
 
 puts "Create first Message..."
