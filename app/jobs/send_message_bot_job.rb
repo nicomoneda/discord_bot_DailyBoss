@@ -32,16 +32,16 @@ class SendMessageBotJob < ApplicationJob
       ]
     }.to_json
 
-    ap "COUCOU ON EST ICI"
-    ap request.body.to_json
-    ap "ON VA SEND LA REQUEST \n"
+    # ap "COUCOU ON EST ICI"
+    # ap request.body.to_json
+    # ap "ON VA SEND LA REQUEST \n"
     response = https.request(request)
 
-    ap response.message
-    ap "ET HOP ON A SEND LE MESSAGE !"
+    # ap response.message
+    # ap "ET HOP ON A SEND LE MESSAGE !"
     unless response.message == "Unauthorized"
       message_id = JSON.parse(response.read_body)["id"]
-      ap message_id
+      # ap message_id
       url_crosspost = URI("https://discord.com/api/channels/835425992097005589/messages/#{message_id}/crosspost")
       https = Net::HTTP.new(url_crosspost.host, url_crosspost.port)
       https.use_ssl = true
