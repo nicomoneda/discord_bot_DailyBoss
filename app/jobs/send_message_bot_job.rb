@@ -9,13 +9,13 @@ class SendMessageBotJob < ApplicationJob
   def perform(fields, channel_id)
     Message.create(content: fields.join(""))
     
-    if channel_id == "1165243473511862282" #French title
+    if channel_id == "830072034633449512" #French title
       title_txt = "Ici Wak'Boss qui parle ! Voici les boss du #{Time.now.strftime("%d/%m/%y")}"
-    elsif channel_id == "1165243499889832037" #English title
+    elsif channel_id == "1165248851020632165" #English title
       title_txt = "This is Wak'Boss speaking! Here are the bosses of  #{Time.now.strftime("%d/%m/%y")}"
-    elsif channel_id == "1165243520978788363" #Spanish title
+    elsif channel_id == "1165249747871866990" #Spanish title
       title_txt = "¡Wak'Boss al habla! Estos son los jefes del #{Time.now.strftime("%d/%m/%y")}"
-    elsif channel_id == "1165243538192224367" #Portuguese title
+    elsif channel_id == "1165250069969244160" #Portuguese title
       title_txt =  "Aqui é Wak'Boss falando! Aqui estão os chefes em #{Time.now.strftime("%d/%m/%y")}"
     end
     

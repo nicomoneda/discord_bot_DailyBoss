@@ -15,7 +15,7 @@ class SendDailyBoss < ApplicationService
     puts @fields
     # build_message
     # puts @message_content
-    SendMessageBotJob.perform_now(@fields_fr, "1165243473511862282")
+    SendMessageBotJob.perform_now(@fields_fr, "830072034633449512")
     sleep 2
     SendMessageBotJob.perform_now(@fields_en, "1165243499889832037")
     sleep 2
