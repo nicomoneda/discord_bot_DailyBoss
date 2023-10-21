@@ -1,7 +1,10 @@
 class SendDailyBoss < ApplicationService
   def initialize
     @message_content = ""
-    @fields = []
+    @fields_fr = []
+    @fields_en = []
+    @fields_es = []
+    @fields_pt = []
     @day_interval = 0
   end
 
@@ -12,7 +15,13 @@ class SendDailyBoss < ApplicationService
     puts @fields
     # build_message
     # puts @message_content
-    SendMessageBotJob.perform_now(@fields)
+    SendMessageBotJob.perform_now(@fields_fr, "1165243473511862282")
+    sleep 2
+    SendMessageBotJob.perform_now(@fields_en, "1165243499889832037")
+    sleep 2
+    SendMessageBotJob.perform_now(@fields_es, "1165243520978788363")
+    sleep 2
+    SendMessageBotJob.perform_now(@fields_pt, "1165243538192224367")
   end
 
   private
@@ -32,7 +41,10 @@ class SendDailyBoss < ApplicationService
             boss.second_encounter == modulo || 
             boss.third_encounter == modulo
           # @bosses << Boss.where(first_encounter: modulo).or(Boss.where(second_encounter: modulo)).or(Boss.where(third_encounter: modulo))
-          @fields << { "name": boss.loop_pattern.level_range.range, "value": "[#{boss.name}, \n#{boss.location}](#{boss.url_fr})", "inline": true }
+          @fields_fr << { "name": boss.loop_pattern.level_range.range, "value": "[#{boss.name_fr}, \n#{boss.location_fr}](#{boss.url_fr})", "inline": true }
+          @fields_en << { "name": boss.loop_pattern.level_range.range, "value": "[#{boss.name_en}, \n#{boss.location_en}](#{boss.url_en})", "inline": true }
+          @fields_es << { "name": boss.loop_pattern.level_range.range, "value": "[#{boss.name_es}, \n#{boss.location_es}](#{boss.url_es})", "inline": true }
+          @fields_pt << { "name": boss.loop_pattern.level_range.range, "value": "[#{boss.name_pt}, \n#{boss.location_pt}](#{boss.url_pt})", "inline": true }
         end
       end
     end

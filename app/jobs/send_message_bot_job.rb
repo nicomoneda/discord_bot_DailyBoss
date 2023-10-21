@@ -6,9 +6,20 @@ require 'date'
 class SendMessageBotJob < ApplicationJob
   queue_as :default
 
-  def perform(fields)
+  def perform(fields, channel_id)
     Message.create(content: fields.join(""))
-    url_message = URI("https://discord.com/api/channels/830072034633449512/messages")
+    
+    if channel_id == "1165243473511862282" #French title
+      title_txt = "Ici Wak'Boss qui parle ! Voici les boss du #{Time.now.strftime("%d/%m/%y")}"
+    elsif channel_id == "1165243499889832037" #English title
+      title_txt = "This is Wak'Boss speaking! Here are the bosses of  #{Time.now.strftime("%d/%m/%y")}"
+    elsif channel_id == "1165243520978788363" #Spanish title
+      title_txt = "¡Wak'Boss al habla! Estos son los jefes del #{Time.now.strftime("%d/%m/%y")}"
+    elsif channel_id == "1165243538192224367" #Portuguese title
+      title_txt =  "Aqui é Wak'Boss falando! Aqui estão os chefes em #{Time.now.strftime("%d/%m/%y")}"
+    end
+    
+    url_message = URI("https://discord.com/api/channels/#{channel_id}/messages")
 
     https = Net::HTTP.new(url_message.host, url_message.port)
     https.use_ssl = true
@@ -25,7 +36,7 @@ class SendMessageBotJob < ApplicationJob
       tts: false,
       embeds: [ 
         {
-          "title": "Ici Wak'Boss qui parle ! Voici les Boss du #{Time.now.strftime("%d/%m/%y")}",
+          "title": title_txt,
           "color": 11634956,
           "fields": fields
         }
@@ -42,7 +53,7 @@ class SendMessageBotJob < ApplicationJob
     unless response.message == "Unauthorized"
       message_id = JSON.parse(response.read_body)["id"]
       # ap message_id
-      url_crosspost = URI("https://discord.com/api/channels/830072034633449512/messages/#{message_id}/crosspost")
+      url_crosspost = URI("https://discord.com/api/channels/#{channel_id}/messages/#{message_id}/crosspost")
       https = Net::HTTP.new(url_crosspost.host, url_crosspost.port)
       https.use_ssl = true
       request = Net::HTTP::Post.new(url_crosspost)
@@ -51,5 +62,6 @@ class SendMessageBotJob < ApplicationJob
       response = https.request(request)
       puts response.read_body
     end
+
   end
 end
