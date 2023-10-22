@@ -17,11 +17,11 @@ class SendDailyBoss < ApplicationService
     # puts @message_content
     SendMessageBotJob.perform_now(@fields_fr, "830072034633449512")
     sleep 2
-    SendMessageBotJob.perform_now(@fields_en, "1165243499889832037")
+    SendMessageBotJob.perform_now(@fields_en, "1165248851020632165")
     sleep 2
-    SendMessageBotJob.perform_now(@fields_es, "1165243520978788363")
+    SendMessageBotJob.perform_now(@fields_es, "1165249747871866990")
     sleep 2
-    SendMessageBotJob.perform_now(@fields_pt, "1165243538192224367")
+    SendMessageBotJob.perform_now(@fields_pt, "1165250069969244160")
   end
 
   private
